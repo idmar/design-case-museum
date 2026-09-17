@@ -1,0 +1,218 @@
+{
+  "26": {
+    "asset": "assets/exhibit-026.webp",
+    "width": 1080,
+    "height": 810,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://marketplace.framer.com/creators-assets/_next/image?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Fcomponents%2FeRIrTEGO8TbmsFIh5kRc%2Forbiting-gallery-YKOfgMGg0UToIu4v0eu8OpBMQs0vIW&w=1080&q=100",
+    "preview_source_label": "原收藏圖片網址（Framer）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "人像環繞，留白成為視覺中心",
+    "summary": "黑色背景上的人像卡片沿環形排列，中央空白讓視線沿外圈移動。",
+    "analysis": "卡片的高低、角度與重疊形成空間節奏；彩色人像與深黑底色建立清楚的前後關係。靜態題圖呈現的是構圖，實際旋轉與操作需到原站體驗。",
+    "tags": [
+      "環形構圖",
+      "空間層次"
+    ],
+    "lesson": "安排重複內容時，可以讓留白成為中心，再用尺度和重疊提示觀看順序；行動版仍需提供明確的操作入口。"
+  },
+  "103": {
+    "asset": "assets/exhibit-103.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2025/12/09100359/framer3-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "用藍色人像串起模板靈感",
+    "summary": "封面以戴著發光眼鏡的人像為主角，周圍穿插小型網站預覽，呈現模板集合的主題。",
+    "analysis": "高飽和藍色統一畫面，眼鏡上的符號形成焦點；不同尺度的小預覽補充內容種類，避免集合封面失去主次。",
+    "tags": [
+      "封面編排",
+      "尺度對比"
+    ],
+    "lesson": "把封面作為文章入口，再到原文比較各模板的內容結構與適用情境；封面不能替代模板的實際體驗。"
+  },
+  "165": {
+    "asset": "assets/exhibit-165.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2025/06/09173915/image-3-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "把花海折入一座鏡面之門",
+    "summary": "深藍夜色與紫色花海中，一座直立鏡面量體置於中心，上方以細緻字體呈現 NAYA STUDIO。",
+    "analysis": "細線字標、寬廣暗部與中央反射形體形成克制的對比；紫色景觀延伸進量體，帶出既連續又不真實的空間感。",
+    "tags": [
+      "鏡面空間",
+      "夜色配色"
+    ],
+    "lesson": "讓品牌字標保持安靜，將視覺敘事交給單一鮮明場景；文字位置應避開影像最複雜的區域。"
+  },
+  "203": {
+    "asset": "assets/exhibit-203.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2025/01/23123616/Our-First-AI-TV-Show-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "用重複人物建立電影敘事",
+    "summary": "題圖中，戴深色頭盔的人物成列站立，前景角色手持裝置，形成具有故事張力的場面。",
+    "analysis": "重複隊列帶出縱深，前景深色服裝與後方暖色服裝形成對照；隱去面孔的頭盔讓觀者將注意力轉向角色位置與動作。",
+    "tags": [
+      "影像敘事",
+      "重複節奏"
+    ],
+    "lesson": "觀察單張畫面如何交代人物關係，再到原始影片核對其敘事與製作資訊；靜態題圖不代表完整影片的品質。"
+  },
+  "205": {
+    "asset": "assets/exhibit-205.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2025/01/20101148/hugeinc-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "一抹桃紅，穩住繁複影像",
+    "summary": "手錶細節與透明材質交疊成背景，中央桃紅方塊以 Huge 字樣建立直接的品牌焦點。",
+    "analysis": "高密度產品影像與單純色塊形成對比；品牌標記集中於中央，讓複雜材質仍有清楚的視線落點。",
+    "tags": [
+      "品牌色塊",
+      "材質對比"
+    ],
+    "lesson": "當背景內容豐富時，以簡潔而穩定的品牌色塊建立辨識，並保留足夠的文字對比。"
+  },
+  "209": {
+    "asset": "assets/exhibit-209.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2025/01/08151107/stripe-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "讓數字變成可觀看的機器",
+    "summary": "原收藏畫面把交易數字放入一座實體機台般的介面，螢幕、計數器與桌面道具組成展示場景。",
+    "analysis": "不同尺寸的數字面板分出資訊層級，機櫃與桌面提供熟悉的尺度感；偏中性的環境讓發光數據更突出。",
+    "tags": [
+      "數據敘事",
+      "擬物介面"
+    ],
+    "lesson": "用具體物件協助理解抽象資訊，但應讓核心數字與標籤先被讀懂；題圖中的數值是歷史畫面，不是即時指標。"
+  },
+  "222": {
+    "asset": "assets/exhibit-222.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/12/19114548/polecat-1.jpg",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "一張充滿細節的插畫地圖",
+    "summary": "鮮黃陸地、藍色水域與多彩角色鋪滿畫面，Polecat 以熱鬧的插畫世界作為品牌入口。",
+    "analysis": "大面積底色先區分區域，再用人物、建築與小物件增加探索層次；角落的簡短導覽與繁密插畫形成尺度對比。",
+    "tags": [
+      "插畫世界",
+      "色彩分區"
+    ],
+    "lesson": "先用色塊和區域建立整體秩序，再加入可被逐步發現的細節；主要導覽要在密集背景中保持可辨識。"
+  },
+  "243": {
+    "asset": "assets/exhibit-243.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/11/19154414/web-1.jpg",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "以橙色封面建立未來感議題",
+    "summary": "橙色底上的白色斜體標題搭配三個佩戴頭戴裝置的人像，清楚標示 2025 網頁設計趨勢主題。",
+    "analysis": "標題佔據上半部，人物組成下方橫向節奏；藍紫色人像與暖橙背景拉開強烈對比，讓封面在縮圖尺寸仍有辨識度。",
+    "tags": [
+      "編輯封面",
+      "冷暖對比"
+    ],
+    "lesson": "分析封面如何表達議題，再到文章比較具體案例；趨勢標題不等同於適合所有產品的設計規則。"
+  },
+  "260": {
+    "asset": "assets/exhibit-260.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/10/17100907/Mach-1.jpg",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "用角色與色彩製造超現實瞬間",
+    "summary": "運動場上的卡通角色懸浮在粉色煙霧之上，黃色服裝、藍色球場與綠色背景形成清楚分層。",
+    "analysis": "熟悉的球場線條提供真實尺度，誇張角色與粉色煙霧則打破預期；中央主體讓多種鮮明顏色仍保持聚焦。",
+    "tags": [
+      "角色敘事",
+      "超現實場景"
+    ],
+    "lesson": "先建立可辨認的日常場景，再加入一個明確的超現實元素；對比越強，主體與背景的層級越需要清楚。"
+  },
+  "272": {
+    "asset": "assets/exhibit-272.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/08/02124808/bidsforsurvival-2.jpg",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "把瀏覽入口放進街道場景",
+    "summary": "斜俯視街景中，一家店面的櫥窗、招牌與黃色提示成為注意力中心，呈現接近探索遊戲的觀看方式。",
+    "analysis": "灰褐色建築與街道形成安靜背景，櫥窗亮光及黃色標記提示焦點；斜角透視讓平面預覽具有可進入的空間感。",
+    "tags": [
+      "場景導覽",
+      "焦點提示"
+    ],
+    "lesson": "在場景式頁面中以少量高對比標記引導探索，同時提供可讀文字入口；是否能點擊或行走仍需以原站為準。"
+  },
+  "273": {
+    "asset": "assets/exhibit-273.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/06/18135650/zentry-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "用超大字體框住遊戲世界",
+    "summary": "遊戲角色佔據主要畫面，REDEFINE 與 GAMING 分別置於左上與右下，構成強烈的對角張力。",
+    "analysis": "粗體白字與豐富的角色場景形成對照，小型黃色入口另立操作層級；文字位置同時框住主體並保留角色表情與動作。",
+    "tags": [
+      "字體張力",
+      "遊戲敘事"
+    ],
+    "lesson": "讓標題與影像共同構圖，但避免文字遮住人物關鍵部分；縮至手機時需要重新安排換行與裁切。"
+  },
+  "277": {
+    "asset": "assets/exhibit-277.webp",
+    "width": 800,
+    "height": 600,
+    "preview_status": "recovered-web",
+    "preview_source_url": "https://feed.muzli.cloud/muzli_feed/wp-content/uploads/2024/06/07114322/obys-1.png",
+    "preview_source_label": "原收藏圖片網址（Muzli）",
+    "preview_retrieved_at": "2026-09-11",
+    "preview_version_note": "依 bestweb.html 原始圖片連結補回；非目前網站截圖。",
+    "headline": "用柔軟材質談設計教育",
+    "summary": "紅、白、藍色軟質環形物件懸置於灰色幾何空間，褶皺與光影為抽象形體帶來觸感。",
+    "analysis": "柔軟物件與堅硬建築背景形成材質對照；有限配色突出形體差異，階梯與牆面提供穩定的空間秩序。",
+    "tags": [
+      "材質對照",
+      "抽象形體"
+    ],
+    "lesson": "把材質與形體當作視覺研究起點，再到 DES 原站了解課程內容；題圖的藝術表現不等同於課程效果。"
+  }
+}
