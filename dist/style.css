@@ -33,3 +33,5 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition-delay: 0ms !important; }
 }
+
+:root { --color-orange: #b9462b; }
