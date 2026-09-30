@@ -7,7 +7,7 @@ let category='全部',query='',page=1,activeId=null,lastTrigger=null,searchTimer
 const num=n=>String(n).padStart(2,'0');
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const normalize=s=>s.normalize('NFKC').toLocaleLowerCase().trim();
-const searchable=new Map(cases.map(c=>[c.id,normalize([c.name,c.title,c.category,c.headline,c.summary,...c.tags,c.url].join(' '))]));
+const searchable=new Map(cases.map(c=>[c.id,normalize([c.name,c.title,c.category,c.headline,c.summary,c.analysis,c.lesson,...c.tags,c.url].join(' '))]));
 function filtered(){const words=normalize(query).split(/\s+/).filter(Boolean);return cases.filter(c=>(category==='全部'||c.category===category)&&words.every(w=>searchable.get(c.id).includes(w)))}
 const revealObserver='IntersectionObserver'in window?new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}})},{threshold:.06}):null;
 function previewHTML(c,detail=false,priority=false,lazy=true){
