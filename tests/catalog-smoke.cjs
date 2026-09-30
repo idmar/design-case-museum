@@ -13,8 +13,8 @@ let shortcutPrevented=false;listeners.keydown({key:'k',metaKey:true,target:get('
 let editableShortcutPrevented=false;listeners.keydown({key:'k',ctrlKey:true,target:{tagName:'INPUT'},preventDefault(){editableShortcutPrevented=true}});assert.equal(editableShortcutPrevented,false);
 vm.runInContext('scrollY=-20;progress()',context);assert.equal(get('progress').style.transform,'scaleX(0)');vm.runInContext('scrollY=2000;progress()',context);assert.equal(get('progress').style.transform,'scaleX(1)');vm.runInContext('scrollY=0;progress()',context);
 assert.equal(data.filter(c=>c.preview_status==='recovered-web').length,12);assert(data.every(c=>c.asset));
-const original=JSON.parse(require('child_process').execFileSync('git',['show','HEAD:dist/cases.json'],{cwd:root,encoding:'utf8'}));
-for(const c of original.filter(c=>c.id<=12))assert.equal(data.find(x=>x.id===c.id).url,c.url,'Preserve original deep-link identities');
+const originalUrls=new Map([[1,'https://inspiring.nk.studio/'],[2,'https://showcase.noomoagency.com/?ref=muzli_c79abc36'],[3,'https://www.studioloop.com.br/'],[4,'https://brik.space/type-yellow?utm_source=muzli&utm_medium=paid&utm_campaign=pa_media_buying_brik_8_26_organic&utm_content=tumble-brief-mix&utm_keep_original=true'],[5,'https://webgl-drum-machine.vercel.app/?ref=muzli_99fd0145'],[6,'https://heronaiapp.com/'],[7,'https://www.butter.video/'],[8,'https://brand.rocket.com/'],[9,'https://www.behance.net/gallery/242098083/-Rams-System-Icons'],[10,'https://www.mathis-biabiany.fr/?ref=muzli_2bf45231'],[11,'https://www.reimaginegenesis.com/'],[12,'https://verostudio.com/']]);
+for(const [id,url] of originalUrls)assert.equal(data.find(c=>c.id===id)?.url,url,`Preserve original deep-link identity for case ${id}`);
 assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,24);
 const allPageIds=[];
 for(let p=1;p<=12;p++){vm.runInContext(`page=${p};render()`,context);allPageIds.push(...[...get('gallery').innerHTML.matchAll(/data-id="(\d+)"/g)].map(m=>Number(m[1])))}

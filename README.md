@@ -20,7 +20,7 @@ python3 -m http.server 8000 --directory dist
 - `scripts/recovered-previews.json`：12 个补图案例的来源和笔记。
 - `scripts/build_catalog.py`：生成浏览器使用的 data.js。
 - `scripts/import_archive.py`：从原始 HTML/PDF 重新导入；原始附件未随包附带，需自行提供。
-- `tests/catalog-smoke.cjs`：功能冒烟测试，需要 Node.js，并在初始化 Git 提交后运行。
+- `tests/catalog-smoke.cjs`：功能冒烟测试，只需要 Node.js；无需 Git 提交历史。
 
 ## 更新与检查
 
