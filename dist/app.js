@@ -30,12 +30,12 @@ function render(){
  document.getElementById('page-caption').textContent=total?`第 ${page} / ${totalPages} 頁 · 每頁最多 ${pageSize} 件`:'';
  progress();
 }
-function showCase(id){const c=cases.find(c=>c.id===id);if(!c)return;activeId=id;
+function showCase(id,trigger=null){const c=cases.find(c=>c.id===id);if(!c)return;activeId=id;
  document.getElementById('detail-number').textContent=`EXHIBIT ${num(c.id)} / ${c.category}`;
  const isReading=c.category==='設計閱讀';
  document.getElementById('detail-body').innerHTML=`${previewHTML(c,true,true,false)}<div class="detail-copy"><div class="eyebrow">${c.tags.map(escapeHTML).join(' / ')}</div><h2 id="detail-title">${escapeHTML(c.name)}</h2><h3 class="lead">${escapeHTML(c.headline)}</h3><p>${escapeHTML(c.summary)}</p><div class="notes"><section><h3><span>01</span>${isReading?'視覺觀察':'設計亮點'}</h3><p>${escapeHTML(c.analysis)}</p></section><section><h3><span>02</span>${isReading?'閱讀切入點':'可以帶走的靈感'}</h3><p>${escapeHTML(c.lesson)}</p></section></div><a class="original" href="${escapeHTML(c.url)}" target="_blank" rel="noopener noreferrer">${isReading?'前往原始文章':'前往原始作品'} <span aria-hidden="true">↗</span></a><div class="source-note"><p>在新分頁開啟 · ${c.preview_status==='embedded'?'預覽取自':'收藏記錄位於'} bestweb.pdf，第 ${c.pdf_page} 頁。原站內容可能已更新。</p>${c.preview_status==='recovered-web'?`<p>補回題圖：<a href="${escapeHTML(c.preview_source_url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(c.preview_source_label)} ↗</a> · ${escapeHTML(c.preview_retrieved_at)}。${escapeHTML(c.preview_version_note)}</p>`:''}<details><summary>查看原始收藏資料</summary><p>${escapeHTML(c.title)}</p><p>原始收藏序號 ${num(c.source_index)} · ${c.preview_status==='missing-in-source'?'原附件缺圖，筆記僅提供來源線索與觀察方向':'圖片為靜態存檔，筆記基於可見畫面'}${isReading?'與標題，未將文章內容作為已核實結論':''}。</p></details></div></div>`;
  const items=filtered(),index=items.findIndex(c=>c.id===id);document.getElementById('position').textContent=`${num(index+1)} / ${num(items.length)}`;document.getElementById('prev').disabled=index<=0;document.getElementById('next').disabled=index>=items.length-1||index<0;
- if(!dialog.open){lastTrigger=document.activeElement;dialog.showModal();document.body.classList.add('locked')}
+ if(!dialog.open){lastTrigger=trigger||document.activeElement;dialog.showModal();document.body.classList.add('locked')}
  dialog.scrollTop=0;
 }
 function closeDetail(){const currentId=activeId,fallback=lastTrigger?.isConnected&&lastTrigger!==document.body?lastTrigger:document.getElementById('collection-title');dialog.close();activeId=null;document.body.classList.remove('locked');
@@ -47,7 +47,7 @@ function stateFromURL(){if(location.hash===lastStateHash)return;lastStateHash=lo
  if(id&&cases.some(c=>c.id===id)){if(!filtered().some(c=>c.id===id)){category='全部';query='';search.value=''}page=Math.floor(filtered().findIndex(c=>c.id===id)/pageSize)+1;render();showCase(id)}else{const restoreFocus=dialog.open,triggerId=lastTrigger?.dataset.id;if(restoreFocus){dialog.close();activeId=null;document.body.classList.remove('locked')}render();if(restoreFocus){const target=triggerId?gallery.querySelector(`[data-id="${triggerId}"]`):null;(target||document.getElementById('collection-title'))?.focus({preventScroll:true});lastTrigger=null}}
 }
 function reset(){clearTimeout(searchTimer);category='全部';query='';page=1;search.value='';render();updateURL(null,true);search.focus()}
-gallery.addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b){if(e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();const id=Number(b.dataset.id);updateURL(id);showCase(id)}else if(e.target.closest('#reset-results'))reset()});
+gallery.addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b){if(e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();const id=Number(b.dataset.id);updateURL(id);showCase(id,b)}else if(e.target.closest('#reset-results'))reset()});
 filters.addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b||category===b.dataset.filter)return;category=b.dataset.filter;page=1;render();updateURL(null,true)});
 function applySearch(){query=search.value.trim();page=1;render();updateURL(null,true)}
 search.addEventListener('compositionstart',()=>clearTimeout(searchTimer));search.addEventListener('input',e=>{if(e.isComposing){clearTimeout(searchTimer);return}clearTimeout(searchTimer);searchTimer=setTimeout(applySearch,180)});search.addEventListener('compositionend',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(applySearch,180)});
