@@ -16,6 +16,7 @@ assert.equal(data.filter(c=>c.preview_status==='recovered-web').length,12);asser
 const originalUrls=new Map([[1,'https://inspiring.nk.studio/'],[2,'https://showcase.noomoagency.com/?ref=muzli_c79abc36'],[3,'https://www.studioloop.com.br/'],[4,'https://brik.space/type-yellow?utm_source=muzli&utm_medium=paid&utm_campaign=pa_media_buying_brik_8_26_organic&utm_content=tumble-brief-mix&utm_keep_original=true'],[5,'https://webgl-drum-machine.vercel.app/?ref=muzli_99fd0145'],[6,'https://heronaiapp.com/'],[7,'https://www.butter.video/'],[8,'https://brand.rocket.com/'],[9,'https://www.behance.net/gallery/242098083/-Rams-System-Icons'],[10,'https://www.mathis-biabiany.fr/?ref=muzli_2bf45231'],[11,'https://www.reimaginegenesis.com/'],[12,'https://verostudio.com/']]);
 for(const [id,url] of originalUrls)assert.equal(data.find(c=>c.id===id)?.url,url,`Preserve original deep-link identity for case ${id}`);
 assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,24);
+assert(get('gallery').innerHTML.includes('<a class="card-trigger" href="#case=1"'),'Case cards should be direct deep links');
 const allPageIds=[];
 for(let p=1;p<=12;p++){vm.runInContext(`page=${p};render()`,context);allPageIds.push(...[...get('gallery').innerHTML.matchAll(/data-id="(\d+)"/g)].map(m=>Number(m[1])))}
 assert.equal(allPageIds.length,277);assert.equal(new Set(allPageIds).size,277);assert.equal(allPageIds.at(-1),277);assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,13);
