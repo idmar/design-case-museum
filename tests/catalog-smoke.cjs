@@ -21,6 +21,8 @@ for(const [id,url] of originalUrls)assert.equal(data.find(c=>c.id===id)?.url,url
 assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,24);
 assert(get('gallery').innerHTML.includes('<a class="card-trigger" href="#case=1"'),'Case cards should be direct deep links');
 assert(get('gallery').innerHTML.includes('transition-delay:120ms'),'Scroll reveals should stagger visible cards');
+get('detail').open=false;
+for(const modifier of [{metaKey:true},{ctrlKey:true},{shiftKey:true},{altKey:true},{button:1}]){let prevented=false;const link={dataset:{id:'1'}};const hash=context.location.hash;get('gallery').handlers.click({target:{closest:selector=>selector==='[data-id]'?link:null},defaultPrevented:false,button:modifier.button||0,metaKey:!!modifier.metaKey,ctrlKey:!!modifier.ctrlKey,shiftKey:!!modifier.shiftKey,altKey:!!modifier.altKey,preventDefault(){prevented=true}});assert.equal(prevented,false,'Modified case activation should retain native link behavior');assert.equal(get('detail').open,false);assert.equal(context.location.hash,hash)}
 const allPageIds=[];
 for(let p=1;p<=12;p++){vm.runInContext(`page=${p};render()`,context);allPageIds.push(...[...get('gallery').innerHTML.matchAll(/data-id="(\d+)"/g)].map(m=>Number(m[1])))}
 assert.equal(allPageIds.length,277);assert.equal(new Set(allPageIds).size,277);assert.equal(allPageIds.at(-1),277);assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,13);
