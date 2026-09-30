@@ -39,7 +39,7 @@ for s in source:
  c.update(s);c['url']=url;c.setdefault('name',s['title']);match=matches.get(s['source_url'])
  if match:
   raw=p.extract_image(match['xref']);image=Image.open(BytesIO(raw['image'])).convert('RGB');image.thumbnail((1200,1000));asset=f"assets/exhibit-{c['id']:03}.webp";
-  if not (root/'dist'/asset).exists():image.save(root/'dist'/asset,'WEBP',quality=87,method=4)
+  image.save(root/'dist'/asset,'WEBP',quality=87,method=4)
   c.update(asset=asset,width=image.width,height=image.height,pdf_page=match['page'],preview_status='embedded',preview_xref=match['xref'])
  else:
   c['pdf_pages']=link_occurrences.get(s['source_url'],[]);c['pdf_page']=c['pdf_pages'][0] if c['pdf_pages'] else None;c['preview_status']='missing-in-source';c.pop('asset',None);c.pop('preview_xref',None);missing.append({'index':s['source_index'],'title':s['title'],'pages':c['pdf_pages']})
