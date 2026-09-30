@@ -27,7 +27,7 @@ function render(){
  pagination.hidden=totalPages<=1;
  if(totalPages>1){let pages=[];for(let n=1;n<=totalPages;n++){if(n===1||n===totalPages||Math.abs(n-page)<=1)pages.push(n)}
  pagination.innerHTML=`<button data-page="${page-1}" ${page===1?'disabled':''} aria-label="上一頁">← <span>上一頁</span></button><div class="page-numbers">${pages.map((n,i)=>`${i&&n-pages[i-1]>1?'<span class="ellipsis">…</span>':''}<button data-page="${n}" ${n===page?'aria-current="page"':''} aria-label="第 ${n} 頁">${n}</button>`).join('')}</div><button data-page="${page+1}" ${page===totalPages?'disabled':''} aria-label="下一頁"><span>下一頁</span> →</button>`}
- document.getElementById('page-caption').textContent=total?`第 ${page} / ${totalPages} 頁 · 每頁最多 ${pageSize} 件`:'277 件收藏，等待下一次發現。';
+ document.getElementById('page-caption').textContent=total?`第 ${page} / ${totalPages} 頁 · 每頁最多 ${pageSize} 件`:'';
  progress();
 }
 function showCase(id){const c=cases.find(c=>c.id===id);if(!c)return;activeId=id;
