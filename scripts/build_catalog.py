@@ -25,8 +25,10 @@ reading_lessons={
 'u':'回到原文區分設計概念、示意介面與實際可用功能，再閱讀其依據與限制。把具體操作目標和成功條件寫清楚，才便於比較。'}
 cs=json.loads((root/'dist/cases.json').read_text());notes={}
 recovered=json.loads((root/'scripts/recovered-previews.json').read_text()) if (root/'scripts/recovered-previews.json').exists() else {}
-for row in (root/'scripts/curator-notes.tsv').read_text().splitlines():
- i,cat,pattern,headline,summary,analysis=row.split('|');note_index=int(i)
+for line_number,row in enumerate((root/'scripts/curator-notes.tsv').read_text().splitlines(),1):
+ fields=row.split('|')
+ if len(fields)!=6:raise ValueError(f'Expected 6 fields in curator note row {line_number}, got {len(fields)}')
+ i,cat,pattern,headline,summary,analysis=fields;note_index=int(i)
  if note_index in notes:raise ValueError(f'Duplicate curator note index: {note_index}')
  if cat not in cats:raise ValueError(f'Unknown curator category {cat!r} at source index {note_index}')
  if pattern not in patterns:raise ValueError(f'Unknown curator pattern {pattern!r} at source index {note_index}')
