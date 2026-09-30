@@ -26,13 +26,16 @@ reading_lessons={
 cs=json.loads((root/'dist/cases.json').read_text());notes={}
 recovered=json.loads((root/'scripts/recovered-previews.json').read_text()) if (root/'scripts/recovered-previews.json').exists() else {}
 for row in (root/'scripts/curator-notes.tsv').read_text().splitlines():
- i,cat,pattern,headline,summary,analysis=row.split('|');assert int(i) not in notes;notes[int(i)]=(cat,pattern,headline,summary,analysis)
+ i,cat,pattern,headline,summary,analysis=row.split('|');note_index=int(i)
+ if note_index in notes:raise ValueError(f'Duplicate curator note index: {note_index}')
+ notes[note_index]=(cat,pattern,headline,summary,analysis)
 expected_notes={c['source_index'] for c in cs if c['id']>12}
 actual_notes=set(notes)
 if expected_notes!=actual_notes:
  missing=sorted(expected_notes-actual_notes);unused=sorted(actual_notes-expected_notes)
  raise ValueError(f'Curator note indexes mismatch: missing={missing}, unused={unused}')
 overrides={82:'The 24 Solar Terms',120:'Framer Halloween AI Photo Booth',22:'The Women Gallery',50:'Speculative Worlds',51:'VIBRYX',83:'Robert S. Connett — Microscopic Worlds',96:'Custom Logo Illustrations with Nano Banana Pro',103:'Framer Website Templates for 2026',136:'Mechanical Poetry',141:'The Psychology of Design Feedback',175:'Our Roots · Flashlights',183:'Oops, I Did It IRL',184:'Arts Corporation — Animation Case Study',187:'FEW Issue 2',195:'Muzli Picked — Midlife Engineering',196:'Graffitied Buildings & the Housing Crisis',203:'Our First AI TV Show!',206:'Stupid Car Tray',208:'The 2025 Web Design Forecast',218:'Framer Website Templates for 2025',223:'Readymag Websites of the Year 2024',234:'Top 10 Private Spaces of 2024',243:'2025 Web Design Trends',252:'AI-driven Features for Banking UX',256:'The World of Tim Burton',257:'Set Any Text in Motion',271:'Digital Design Days 2024'}
+required_fields=['name','title','headline','summary','analysis','lesson','tags','category','url','source_url','pdf_page']
 for c in cs:
  if c['id']>12:
   cat,pattern,headline,summary,analysis=notes[c['source_index']];c.update(category=cats[cat],headline=headline,summary=summary,analysis=analysis,tags=patterns[pattern][0],lesson=reading_lessons.get(pattern,patterns[pattern][1])if cat=='R' else patterns[pattern][1])
@@ -40,9 +43,10 @@ for c in cs:
   if ' | ' in c['name']:c['name']=c['name'].split(' | ')[0]
  if c['source_index'] in overrides:c['name']=overrides[c['source_index']]
  if str(c['id']) in recovered:c.update(recovered[str(c['id'])])
- if c['preview_status']=='missing-in-source':assert not c.get('asset')
- assert all(c.get(k) for k in ['name','title','headline','summary','analysis','lesson','tags','category','url','source_url','pdf_page'])
- assert c['url'].startswith(('https://','http://'))
+ if c['preview_status']=='missing-in-source' and c.get('asset'):raise ValueError(f"Missing preview must not have an asset: {c['id']}")
+ missing_fields=[field for field in required_fields if not c.get(field)]
+ if missing_fields:raise ValueError(f"Case {c['id']} missing required fields: {missing_fields}")
+ if not c['url'].startswith(('https://','http://')):raise ValueError(f"Case {c['id']} has invalid URL: {c['url']}")
 cs.sort(key=lambda c:c['id'])
 (root/'dist/cases.json').write_text(json.dumps(cs,ensure_ascii=False,indent=2))
 (root/'dist/data.js').write_text('window.MUSEUM_CASES='+json.dumps(cs,ensure_ascii=False,separators=(',',':'))+';\n')
