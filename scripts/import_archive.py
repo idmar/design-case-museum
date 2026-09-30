@@ -2,14 +2,18 @@
 Usage: python scripts/import_archive.py /path/to/bestweb.html /path/to/bestweb.pdf
 Existing exhibit IDs and curator notes are preserved. PDF is only read, never modified.
 """
-import sys,re,json,html,hashlib
+import argparse,re,json,html,hashlib
 from pathlib import Path
 from urllib.parse import urlparse,parse_qs
 from io import BytesIO
+parser=argparse.ArgumentParser(description='Import the archived collection and refresh its preview images.')
+parser.add_argument('html',type=Path,help='path to bestweb.html')
+parser.add_argument('pdf',type=Path,help='path to bestweb.pdf')
+args=parser.parse_args()
 import fitz
 from PIL import Image
 root=Path(__file__).resolve().parent.parent
-htmlpath,pdfpath=map(Path,sys.argv[1:3])
+htmlpath,pdfpath=args.html,args.pdf
 def direct(url):return parse_qs(urlparse(url).query).get('link',[url])[0]
 s=htmlpath.read_text();source=[]
 for b in re.split(r'<li ng-repeat="item in feed',s)[1:]:
