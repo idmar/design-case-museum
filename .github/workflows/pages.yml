@@ -32,6 +32,14 @@ jobs:
           test -f dist/data.js
           test -d dist/assets
 
+      - name: Verify generated catalog
+        run: |
+          python3 scripts/build_catalog.py
+          git diff --exit-code -- dist/cases.json dist/data.js
+
+      - name: Run catalog smoke test
+        run: node tests/catalog-smoke.cjs
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
