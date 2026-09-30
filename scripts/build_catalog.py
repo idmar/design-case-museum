@@ -28,6 +28,8 @@ recovered=json.loads((root/'scripts/recovered-previews.json').read_text()) if (r
 for row in (root/'scripts/curator-notes.tsv').read_text().splitlines():
  i,cat,pattern,headline,summary,analysis=row.split('|');note_index=int(i)
  if note_index in notes:raise ValueError(f'Duplicate curator note index: {note_index}')
+ if cat not in cats:raise ValueError(f'Unknown curator category {cat!r} at source index {note_index}')
+ if pattern not in patterns:raise ValueError(f'Unknown curator pattern {pattern!r} at source index {note_index}')
  notes[note_index]=(cat,pattern,headline,summary,analysis)
 expected_notes={c['source_index'] for c in cs if c['id']>12}
 actual_notes=set(notes)
