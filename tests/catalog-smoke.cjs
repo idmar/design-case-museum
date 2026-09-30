@@ -9,6 +9,7 @@ const nodes={};const get=id=>nodes[id]??(nodes[id]=new Element(id));
 const listeners={};const context={document:{getElementById:get,querySelector:()=>get('progress'),querySelectorAll:()=>[],activeElement:new Element(),body:new Element(),documentElement:{scrollHeight:1000}},window:{},location:{pathname:'/',search:'',hash:''},history:{pushState(a,b,p){context.location.hash=p.includes('#')?'#'+p.split('#')[1]:''},replaceState(a,b,p){this.pushState(a,b,p)}},URLSearchParams,innerHeight:800,scrollY:0,addEventListener(){},requestAnimationFrame:f=>f(),matchMedia:()=>({matches:true}),clearTimeout(){},setTimeout(){},console};context.window.addEventListener=(n,f)=>listeners[n]=f;
 vm.createContext(context);vm.runInContext(fs.readFileSync(root+'/dist/data.js','utf8'),context);vm.runInContext(fs.readFileSync(root+'/dist/app.js','utf8'),context);
 const data=context.window.MUSEUM_CASES;assert.equal(data.length,277);assert.equal(new Set(data.map(c=>c.source_index)).size,277);assert.equal(new Set(data.map(c=>c.id)).size,277);
+const styles=fs.readFileSync(root+'/dist/style.css','utf8');assert(styles.includes('.reveal.visible'),'Scroll reveal classes should have visible styles');
 let shortcutPrevented=false;listeners.keydown({key:'k',metaKey:true,target:get('gallery'),preventDefault(){shortcutPrevented=true}});assert(shortcutPrevented);assert.equal(context.document.activeElement,get('search'));
 let editableShortcutPrevented=false;listeners.keydown({key:'k',ctrlKey:true,target:{tagName:'INPUT'},preventDefault(){editableShortcutPrevented=true}});assert.equal(editableShortcutPrevented,false);
 vm.runInContext('scrollY=-20;progress()',context);assert.equal(get('progress').style.transform,'scaleX(0)');vm.runInContext('scrollY=2000;progress()',context);assert.equal(get('progress').style.transform,'scaleX(1)');vm.runInContext('scrollY=0;progress()',context);
@@ -17,6 +18,7 @@ const originalUrls=new Map([[1,'https://inspiring.nk.studio/'],[2,'https://showc
 for(const [id,url] of originalUrls)assert.equal(data.find(c=>c.id===id)?.url,url,`Preserve original deep-link identity for case ${id}`);
 assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,24);
 assert(get('gallery').innerHTML.includes('<a class="card-trigger" href="#case=1"'),'Case cards should be direct deep links');
+assert(get('gallery').innerHTML.includes('transition-delay:120ms'),'Scroll reveals should stagger visible cards');
 const allPageIds=[];
 for(let p=1;p<=12;p++){vm.runInContext(`page=${p};render()`,context);allPageIds.push(...[...get('gallery').innerHTML.matchAll(/data-id="(\d+)"/g)].map(m=>Number(m[1])))}
 assert.equal(allPageIds.length,277);assert.equal(new Set(allPageIds).size,277);assert.equal(allPageIds.at(-1),277);assert.equal((get('gallery').innerHTML.match(/<article/g)||[]).length,13);
