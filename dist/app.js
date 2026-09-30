@@ -59,6 +59,7 @@ dialog.addEventListener('cancel',e=>{e.preventDefault();dismiss()});dialog.addEv
 function adjacent(step){const items=filtered(),i=items.findIndex(c=>c.id===activeId),c=items[i+step];if(c){showCase(c.id);updateURL(c.id,true)}}
 document.getElementById('prev').onclick=()=>adjacent(-1);document.getElementById('next').onclick=()=>adjacent(1);
 dialog.addEventListener('keydown',e=>{if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target?.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();adjacent(-1)}if(e.key==='ArrowRight'){e.preventDefault();adjacent(1)}});
+window.addEventListener('keydown',e=>{if(e.defaultPrevented||(!e.metaKey&&!e.ctrlKey)||e.key.toLowerCase()!=='k'||dialog.open)return;if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target?.tagName)||e.target?.isContentEditable)return;e.preventDefault();search.focus()});
 window.addEventListener('popstate',stateFromURL);window.addEventListener('hashchange',stateFromURL);
 let scheduled=false;function progress(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.progress').style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;scheduled=false}addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(progress)}},{passive:true});
 renderFilters();stateFromURL();
