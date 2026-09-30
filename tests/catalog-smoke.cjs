@@ -11,6 +11,7 @@ vm.createContext(context);vm.runInContext(fs.readFileSync(root+'/dist/data.js','
 const data=context.window.MUSEUM_CASES;assert.equal(data.length,277);assert.equal(new Set(data.map(c=>c.source_index)).size,277);assert.equal(new Set(data.map(c=>c.id)).size,277);
 let shortcutPrevented=false;listeners.keydown({key:'k',metaKey:true,target:get('gallery'),preventDefault(){shortcutPrevented=true}});assert(shortcutPrevented);assert.equal(context.document.activeElement,get('search'));
 let editableShortcutPrevented=false;listeners.keydown({key:'k',ctrlKey:true,target:{tagName:'INPUT'},preventDefault(){editableShortcutPrevented=true}});assert.equal(editableShortcutPrevented,false);
+vm.runInContext('scrollY=-20;progress()',context);assert.equal(get('progress').style.transform,'scaleX(0)');vm.runInContext('scrollY=2000;progress()',context);assert.equal(get('progress').style.transform,'scaleX(1)');vm.runInContext('scrollY=0;progress()',context);
 assert.equal(data.filter(c=>c.preview_status==='recovered-web').length,12);assert(data.every(c=>c.asset));
 const original=JSON.parse(require('child_process').execFileSync('git',['show','HEAD:dist/cases.json'],{cwd:root,encoding:'utf8'}));
 for(const c of original.filter(c=>c.id<=12))assert.equal(data.find(x=>x.id===c.id).url,c.url,'Preserve original deep-link identities');
