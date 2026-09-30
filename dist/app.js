@@ -38,9 +38,9 @@ function showCase(id){const c=cases.find(c=>c.id===id);if(!c)return;activeId=id;
  if(!dialog.open){lastTrigger=document.activeElement;dialog.showModal();document.body.classList.add('locked')}
  dialog.scrollTop=0;
 }
-function closeDetail(){const currentId=activeId;dialog.close();activeId=null;document.body.classList.remove('locked');
+function closeDetail(){const currentId=activeId,fallback=lastTrigger?.isConnected&&lastTrigger!==document.body?lastTrigger:document.getElementById('collection-title');dialog.close();activeId=null;document.body.classList.remove('locked');
  const index=filtered().findIndex(c=>c.id===currentId),targetPage=Math.floor(index/pageSize)+1;
- if(index>=0&&targetPage!==page){page=targetPage;render();gallery.querySelector(`[data-id="${currentId}"]`)?.focus({preventScroll:true})}else if(lastTrigger?.isConnected)lastTrigger.focus({preventScroll:true});
+ if(index>=0&&targetPage!==page){page=targetPage;render();gallery.querySelector(`[data-id="${currentId}"]`)?.focus({preventScroll:true})}else fallback?.focus({preventScroll:true});lastTrigger=null;
 }
 function updateURL(id,replace=false){const p=new URLSearchParams();if(category!=='全部')p.set('category',category);if(query)p.set('q',query);if(page>1)p.set('page',page);if(id)p.set('case',id);history[replace?'replaceState':'pushState']({},'',location.pathname+location.search+(p.size?'#'+p.toString():'#collection'));lastStateHash=location.hash}
 function stateFromURL(){if(location.hash===lastStateHash)return;lastStateHash=location.hash;const params=new URLSearchParams(location.hash.slice(1));const selected=params.get('category')||'全部';category=categories.includes(selected)?selected:'全部';query=params.get('q')||'';page=Math.max(1,parseInt(params.get('page')||'1',10)||1);search.value=query;const id=Number(params.get('case'));
