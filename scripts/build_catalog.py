@@ -28,7 +28,9 @@ recovered=json.loads((root/'scripts/recovered-previews.json').read_text()) if (r
 for line_number,row in enumerate((root/'scripts/curator-notes.tsv').read_text().splitlines(),1):
  fields=row.split('|')
  if len(fields)!=6:raise ValueError(f'Expected 6 fields in curator note row {line_number}, got {len(fields)}')
- i,cat,pattern,headline,summary,analysis=fields;note_index=int(i)
+ i,cat,pattern,headline,summary,analysis=fields
+ try:note_index=int(i)
+ except ValueError as error:raise ValueError(f'Invalid curator note index {i!r} at row {line_number}') from error
  if note_index in notes:raise ValueError(f'Duplicate curator note index: {note_index}')
  if cat not in cats:raise ValueError(f'Unknown curator category {cat!r} at source index {note_index}')
  if pattern not in patterns:raise ValueError(f'Unknown curator pattern {pattern!r} at source index {note_index}')
