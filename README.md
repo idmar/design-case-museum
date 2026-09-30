@@ -29,7 +29,15 @@ python3 scripts/build_catalog.py
 node tests/catalog-smoke.cjs
 ```
 
-重新导入附件需要 Python 包 Pillow、PyMuPDF。直接运行网站和更新笔记不需要原始附件。
+重新导入原始归档需要 Python 包 Pillow、PyMuPDF。取得 bestweb.html 和 bestweb.pdf 后运行：
+
+```sh
+python3 scripts/import_archive.py /path/to/bestweb.html /path/to/bestweb.pdf
+python3 scripts/build_catalog.py
+node tests/catalog-smoke.cjs
+```
+
+缺少参数时可运行 `python3 scripts/import_archive.py --help` 查看用法。只更新策展笔记或运行网站不需要原始附件。
 
 ## 来源与版权
 
