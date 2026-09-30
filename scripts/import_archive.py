@@ -10,6 +10,8 @@ parser=argparse.ArgumentParser(description='Import the archived collection and r
 parser.add_argument('html',type=Path,help='path to bestweb.html')
 parser.add_argument('pdf',type=Path,help='path to bestweb.pdf')
 args=parser.parse_args()
+for input_path in (args.html,args.pdf):
+ if not input_path.is_file():parser.error(f'input file does not exist: {input_path}')
 import fitz
 from PIL import Image
 root=Path(__file__).resolve().parent.parent
