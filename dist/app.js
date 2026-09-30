@@ -3,7 +3,7 @@ const cases=window.MUSEUM_CASES;
 const categories=['全部','沉浸體驗','品牌敘事','字體實驗','產品介面','視覺藝術','設計閱讀'];
 const pageSize=24;
 const gallery=document.getElementById('gallery'),dialog=document.getElementById('detail'),search=document.getElementById('search'),filters=document.getElementById('filters'),pagination=document.getElementById('pagination');
-let category='全部',query='',page=1,activeId=null,lastTrigger=null,searchTimer;
+let category='全部',query='',page=1,activeId=null,lastTrigger=null,searchTimer,lastStateHash=null;
 const num=n=>String(n).padStart(2,'0');
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const normalize=s=>s.normalize('NFKC').toLocaleLowerCase().trim();
@@ -42,9 +42,9 @@ function closeDetail(){const currentId=activeId;dialog.close();activeId=null;doc
  const index=filtered().findIndex(c=>c.id===currentId),targetPage=Math.floor(index/pageSize)+1;
  if(index>=0&&targetPage!==page){page=targetPage;render();gallery.querySelector(`[data-id="${currentId}"]`)?.focus({preventScroll:true})}else if(lastTrigger?.isConnected)lastTrigger.focus({preventScroll:true});
 }
-function updateURL(id,replace=false){const p=new URLSearchParams();if(category!=='全部')p.set('category',category);if(query)p.set('q',query);if(page>1)p.set('page',page);if(id)p.set('case',id);history[replace?'replaceState':'pushState']({},'',location.pathname+location.search+(p.size?'#'+p.toString():'#collection'))}
-function stateFromURL(){const params=new URLSearchParams(location.hash.slice(1));const selected=params.get('category')||'全部';category=categories.includes(selected)?selected:'全部';query=params.get('q')||'';page=Math.max(1,parseInt(params.get('page')||'1',10)||1);search.value=query;const id=Number(params.get('case'));
- if(id&&cases.some(c=>c.id===id)){if(!filtered().some(c=>c.id===id)){category='全部';query='';search.value=''}page=Math.floor(filtered().findIndex(c=>c.id===id)/pageSize)+1;render();showCase(id)}else{if(dialog.open){dialog.close();activeId=null;document.body.classList.remove('locked')}render()}
+function updateURL(id,replace=false){const p=new URLSearchParams();if(category!=='全部')p.set('category',category);if(query)p.set('q',query);if(page>1)p.set('page',page);if(id)p.set('case',id);history[replace?'replaceState':'pushState']({},'',location.pathname+location.search+(p.size?'#'+p.toString():'#collection'));lastStateHash=location.hash}
+function stateFromURL(){if(location.hash===lastStateHash)return;lastStateHash=location.hash;const params=new URLSearchParams(location.hash.slice(1));const selected=params.get('category')||'全部';category=categories.includes(selected)?selected:'全部';query=params.get('q')||'';page=Math.max(1,parseInt(params.get('page')||'1',10)||1);search.value=query;const id=Number(params.get('case'));
+ if(id&&cases.some(c=>c.id===id)){if(!filtered().some(c=>c.id===id)){category='全部';query='';search.value=''}page=Math.floor(filtered().findIndex(c=>c.id===id)/pageSize)+1;render();showCase(id)}else{const restoreFocus=dialog.open,triggerId=lastTrigger?.dataset.id;if(restoreFocus){dialog.close();activeId=null;document.body.classList.remove('locked')}render();if(restoreFocus){const target=triggerId?gallery.querySelector(`[data-id="${triggerId}"]`):null;(target||document.getElementById('collection-title'))?.focus({preventScroll:true});lastTrigger=null}}
 }
 function reset(){clearTimeout(searchTimer);category='全部';query='';page=1;search.value='';render();updateURL(null,true);search.focus()}
 gallery.addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b){const id=Number(b.dataset.id);updateURL(id);showCase(id)}else if(e.target.closest('#reset-results'))reset()});
